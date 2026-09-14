@@ -25,6 +25,8 @@
 /**
  * Pizza: com preço base fixo e preço final definido pela quantidade de ingredientes.
  */
+import java.util.Locale;
+
 public class Pizza {
     private static final double PRECO_BASE;
 	private static final int MAXIMO_INGREDIENTES;
@@ -91,9 +93,9 @@ public class Pizza {
         
         cupom += String.format("Pizza com %d ingredientes\n",      quantidadeIngredientes);
 
-        cupom += String.format("\tPreço base: R$ %.2f\n", PRECO_BASE);
-        cupom += String.format("\tAdicionais: R$ %.2f\n", valorAdicionais());
-        cupom += String.format("VALOR A PAGAR: R$ %.2f", valorFinal());
+    cupom += String.format(Locale.forLanguageTag("pt-BR"), "\tPreço base: R$ %.2f\n", PRECO_BASE);
+    cupom += String.format(Locale.forLanguageTag("pt-BR"), "\tAdicionais: R$ %.2f\n", valorAdicionais());
+    cupom += String.format(Locale.forLanguageTag("pt-BR"), "VALOR A PAGAR: R$ %.2f", valorFinal());
 
         return cupom;
 	}

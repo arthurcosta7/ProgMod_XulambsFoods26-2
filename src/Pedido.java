@@ -1,5 +1,6 @@
 import java.time.LocalDate;
 import java.util.LinkedList;
+import java.util.Locale;
 
 public class Pedido {
     private static int ultimoPedido;
@@ -12,6 +13,8 @@ public class Pedido {
         ultimoPedido++;
         data = LocalDate.now();
         pizzas = new LinkedList<>();
+        // Pedido inicia com uma pizza padrão
+        pizzas.add(new Pizza());
         idPedido = ultimoPedido;
         aberto = true;
     }
@@ -43,14 +46,14 @@ public class Pedido {
         StringBuilder cupom = new StringBuilder();
         String estado = aberto ? "aberto" : "fechado";
         
-        cupom.append( String.format("Pedido nº %d - %s (%s)\n", idPedido, data, estado));
+        cupom.append( String.format("Pedido nº %d - %s (%s) com %d pizzas\n", idPedido, data, estado, pizzas.size()));
            
         for (Pizza pizza : pizzas) {
             cupom.append(String.format("----\n%s\n", 
                             pizza.gerarCupom()));
         }
-        cupom.append(String.format("VALOR: R$ %.2f", 
-                            precoAPagar()));
+        cupom.append(String.format(Locale.forLanguageTag("pt-BR"), "VALOR: R$ %.2f", 
+                    precoAPagar()));
 
         return cupom.toString();
     }
